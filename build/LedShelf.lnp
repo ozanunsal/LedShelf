@@ -1,0 +1,20 @@
+--cpu Cortex-M4.fp
+".\build\main.o"
+".\build\led_f429discovery.o"
+"C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Lib\ARM\arm_cortexM4lf_math.lib"
+".\build\stm32f4xx_hal.o"
+".\build\stm32f4xx_hal_cortex.o"
+".\build\stm32f4xx_hal_gpio.o"
+".\build\stm32f4xx_hal_pwr.o"
+".\build\stm32f4xx_hal_pwr_ex.o"
+".\build\stm32f4xx_hal_rcc.o"
+".\build\stm32f4xx_hal_rcc_ex.o"
+".\build\startup_stm32f407xx.o"
+".\build\system_stm32f4xx.o"
+".\build\stm32f4xx_hal_dma.o"
+".\build\stm32f4xx_hal_dma_ex.o"
+".\build\stm32f4xx_hal_tim.o"
+".\build\stm32f4xx_hal_tim_ex.o"
+--ro-base 0x08000000 --entry 0x08000000 --rw-base 0x20000000 --entry Reset_Handler --first __Vectors --strict --summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\LedShelf.map" -o .\build\LedShelf.axf
