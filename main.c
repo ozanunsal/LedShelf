@@ -1,9 +1,18 @@
 #include "stm32f4xx.h"                  // Device header
 #include "stm32f4xx_hal.h"              // Keil::Device:STM32Cube HAL:Common
 
-void delay(__IO uint32_t time)
+// Global Timing Delay variable
+uint32_t TimingDelay;
+
+void SysTick_Handler(void)
 {
-		while(time !=0) time--;
+	if (TimingDelay != 0) TimingDelay--;
+}
+
+void delay(uint32_t time)
+{
+	TimingDelay = time;
+	while(TimingDelay != 0);
 }
 
 int main()
@@ -21,13 +30,16 @@ int main()
 	
 	//Initialize the GPIO
 	HAL_GPIO_Init(GPIOD, &GPIO_InitStructure);
+	
+	//Initialize Timer
+	SysTick_Config(SystemCoreClock / 1000); // Configure Systick interrupts as 1ms
 		
 	while(1)
 	{
-		delay(400000); // This generates 500ms (for 8MHz clk) delay but this kind of delay is not recommended use timer functions later
-		HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_SET);
-		delay(400000);
-		HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_RESET);
+		delay(300); // This generates 300ms
+		HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_SET);
+		delay(300);
+		HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_RESET);
 	}
 	
 	return 0;
